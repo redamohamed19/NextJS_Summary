@@ -10,6 +10,14 @@ export const getStaticPaths = async () => {
     fallback: false, //this is used when we have a big number of routes it load just a few and load the others when the users go to the blog
   };
 };
+//getServerSideProps run the function on the request and each time opposite of getstaticprops that run once before the componet rerender
+export const getServerSideProps = async () => {
+  const res = await fetch('http://jsonplaceholder.typicode.com/users');
+  const data = await res.json();
+  return {
+    props: { ninja: data },
+  };
+};
 
 const Details = () => {
   return (
